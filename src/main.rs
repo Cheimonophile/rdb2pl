@@ -78,7 +78,10 @@ fn main() {
 
                 // write the header to the file
                 match pl_file.write_all(pl_header.as_ref()) {
-                    Err(e) => println!("{}", e),
+                    Err(e) => {
+                        println!("{}", e);
+                        return;
+                    },
                     _=>(),
                 };
 
@@ -109,7 +112,10 @@ fn main() {
     pl_file.write(&['\n' as u8]).unwrap();
     for line in facts {
         match pl_file.write_all(line.as_ref()) {
-            Err(e) => println!("{}", e),
+            Err(e) => {
+                println!("{}", e);
+                return;
+            },
             _=>(),
         };
     }

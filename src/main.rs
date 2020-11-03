@@ -1,6 +1,5 @@
 
 use std::fs;
-use std::path::Path;
 use std::io::{BufReader, BufRead, Write};
 
 use regex::Regex;
@@ -78,7 +77,10 @@ fn main() {
                 let pl_header = format!("% {}{}.\n", table_name, attributes);
 
                 // write the header to the file
-                pl_file.write_all(pl_header.as_ref());
+                match pl_file.write_all(pl_header.as_ref()) {
+                    Err(e) => println!("{}", e),
+                    _=>(),
+                };
 
                 // append the header to the facts vector
                 facts.push(pl_header);
@@ -104,8 +106,11 @@ fn main() {
     }
 
     // write the final database
-    pl_file.write(&['\n' as u8]);
+    pl_file.write(&['\n' as u8]).unwrap();
     for line in facts {
-        pl_file.write_all(line.as_ref());
+        match pl_file.write_all(line.as_ref()) {
+            Err(e) => println!("{}", e),
+            _=>(),
+        };
     }
 }

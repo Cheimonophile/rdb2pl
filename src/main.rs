@@ -13,7 +13,6 @@ fn main() {
     let rgx_rdb = Regex::new(r"(.+)\.rdb").unwrap();
     let rgx_header = Regex::new(r"@(.+)(\(.+\)):.+").unwrap();
 
-
     // check the number of arguments
     if args.len() < 2 || args.len() > 3 {
         println!("{}", "Incorrect number of arguments");

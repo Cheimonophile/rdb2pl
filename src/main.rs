@@ -16,6 +16,7 @@ fn main() {
     // check the number of arguments
     if args.len() < 2 || args.len() > 3 {
         println!("{}", "Incorrect number of arguments");
+        return;
     }
 
     // checks if the file is valid
